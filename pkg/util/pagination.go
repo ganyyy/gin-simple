@@ -11,7 +11,7 @@ func GetPage(c *gin.Context) int {
 	result := 0
 	page, err := com.StrTo(c.Query("page")).Int()
 	if err != nil {
-		log.Fatalf("error query page:%v", err)
+		log.Printf("error query page:%v", err)
 		return 0
 	}
 	if page > 0 {
