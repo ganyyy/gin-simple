@@ -11,7 +11,7 @@ type Tag struct {
 	Name       string `json:"name"`
 	CreatedBy  string `json:"created_by"`
 	ModifiedBy string `json:"modified_by"`
-	DeletedOn  int    `json:"deleted_on"`
+	//DeletedOn  int    `json:"deleted_on"`
 	State      int    `json:"state"`
 }
 
@@ -23,9 +23,9 @@ func (t *Tag) BeforeUpdate(scope *gorm.Scope) error {
 	return scope.SetColumn("ModifiedOn", time.Now().Unix())
 }
 
-func (t *Tag) BeforeDelete(scope *gorm.Scope) error {
-	return scope.SetColumn("DeletedOn", time.Now().Unix())
-}
+//func (t *Tag) BeforeDelete(scope *gorm.Scope) error {
+//	return scope.SetColumn("DeletedOn", time.Now().Unix())
+//}
 
 func GetTags(pageNum, pageSize int, maps interface{}) (tags []Tag) {
 	db.Where(maps).Offset(pageNum).Limit(pageSize).Find(&tags)
